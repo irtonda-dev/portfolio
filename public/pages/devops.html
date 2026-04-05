@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevOps — Irton De Ascencao</title>
+    <link rel="icon" href="../assets/icons/dev1.png" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+    <!-- ===================== NAVIGATION ===================== -->
+    <nav>
+        <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+        <a href="projects.html"><i class="fas fa-folder-open"></i> Projects</a>
+        <a href="contact_me.html"><i class="fas fa-envelope"></i> Contact Me</a>
+    </nav>
+
+    <!-- ===================== PAGE HEADER ==================== -->
+    <header class="page-hero">
+        <div class="page-hero-inner">
+            <a href="projects.html" class="page-back"><i class="fas fa-arrow-left"></i> Projects</a>
+            <p class="page-hero-label">DevOps · Live Demo</p>
+            <h1 class="page-hero-title">DevOps</h1>
+            <p class="page-hero-sub">Two Docker images. One update button. This site live-updates itself.</p>
+            <div class="page-hero-chips">
+                <span class="project-chip"><i class="fab fa-docker"></i> Docker</span>
+                <span class="project-chip"><i class="fas fa-code-branch"></i> CI/CD</span>
+                <span class="project-chip"><i class="fab fa-node-js"></i> Node.js</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================== PROJECT CONTENT ================ -->
+    <main class="project-detail">
+
+        <!-- What's going on -->
+        <div class="devops-explainer">
+            <div class="devops-explainer-header">
+                <i class="fas fa-circle-info"></i>
+                <h2>What's happening here</h2>
+            </div>
+            <p>
+                This project runs as <span class="highlight">two Docker images</span> side by side.
+                The <span class="highlight">old version</span> is the original site — plain white, black text, no styling.
+                The <span class="highlight">current version</span> is what you're looking at right now.
+            </p>
+            <p>
+                Hitting <strong>Update</strong> below will pull the latest Docker image from the registry
+                and restart the container automatically. Hitting <strong>Rollback</strong> swaps back
+                to the previous image instantly. Either way — <span class="highlight">refresh your browser</span> after a few seconds.
+            </p>
+        </div>
+
+        <!-- Side by side comparison -->
+        <div class="devops-compare">
+
+            <div class="devops-version-card">
+                <div class="devops-version-label devops-version-label--old">Old</div>
+                <div class="devops-browser-frame devops-browser-frame--old">
+                    <div class="devops-browser-bar">
+                        <span class="devops-dot"></span>
+                        <span class="devops-dot"></span>
+                        <span class="devops-dot"></span>
+                        <span class="devops-url-bar">localhost:3000</span>
+                    </div>
+                    <div class="devops-browser-content devops-browser-content--old">
+                        <p style="font-family:serif;font-size:1rem;font-weight:bold;margin-bottom:0.4rem;">Irton De Ascencao</p>
+                        <p style="font-size:0.7rem;margin-bottom:0.25rem;">Systems Engineer</p>
+                        <hr style="border-color:#000;margin:0.5rem 0;" />
+                        <p style="font-size:0.65rem;line-height:1.6;">Portfolio &nbsp;·&nbsp; Projects &nbsp;·&nbsp; Contact</p>
+                    </div>
+                </div>
+                <p class="devops-version-desc">v1 — No styling. Plain HTML.</p>
+            </div>
+
+            <div class="devops-arrow-divider">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+
+            <div class="devops-version-card">
+                <div class="devops-version-label devops-version-label--new">Current</div>
+                <div class="devops-browser-frame devops-browser-frame--new">
+                    <div class="devops-browser-bar">
+                        <span class="devops-dot"></span>
+                        <span class="devops-dot"></span>
+                        <span class="devops-dot"></span>
+                        <span class="devops-url-bar">localhost:3000</span>
+                    </div>
+                    <div class="devops-browser-content devops-browser-content--new">
+                        <div style="background:#e5383b;height:0.18rem;width:100%;margin-bottom:0.5rem;border-radius:2px;"></div>
+                        <p style="color:#e5383b;font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:800;">Systems Engineer</p>
+                        <p style="color:#c8cdd3;font-size:0.85rem;font-weight:800;margin:0.2rem 0 0.5rem;line-height:1.1;">IRTON<br/>DE ASCENCAO</p>
+                        <div style="display:flex;gap:0.3rem;flex-wrap:wrap;">
+                            <span style="background:rgba(255,255,255,0.08);color:#c8cdd3;font-size:0.42rem;padding:0.1rem 0.3rem;border-radius:3px;">Docker</span>
+                            <span style="background:rgba(255,255,255,0.08);color:#c8cdd3;font-size:0.42rem;padding:0.1rem 0.3rem;border-radius:3px;">UnraidOS</span>
+                            <span style="background:rgba(255,255,255,0.08);color:#c8cdd3;font-size:0.42rem;padding:0.1rem 0.3rem;border-radius:3px;">Linux</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="devops-version-desc">v2 — Styled. The site you're on now.</p>
+            </div>
+
+        </div>
+
+        <!-- Update / Rollback controls -->
+        <div class="devops-controls">
+            <h3 class="devops-controls-title">Container Controls</h3>
+            <p class="devops-controls-sub">
+                Actions run against the live container. After clicking either button,
+                wait a few seconds then <span class="highlight">refresh your browser</span>.
+            </p>
+
+            <div class="devops-btn-row">
+                <button class="devops-btn devops-btn--update" onclick="handleUpdate()">
+                    <i class="fas fa-arrow-up-from-bracket"></i> Update
+                </button>
+                <button class="devops-btn devops-btn--rollback" onclick="handleRollback()">
+                    <i class="fas fa-rotate-left"></i> Rollback
+                </button>
+            </div>
+
+            <!-- Toast -->
+            <div class="devops-toast" id="devops-toast">
+                <i class="fas fa-triangle-exclamation"></i>
+                <span id="devops-toast-msg"></span>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function showToast(message, type) {
+            const toast = document.getElementById('devops-toast');
+            const msg   = document.getElementById('devops-toast-msg');
+            msg.textContent = message;
+            toast.className = 'devops-toast devops-toast--visible devops-toast--' + type;
+            setTimeout(() => { toast.className = 'devops-toast'; }, 6000);
+        }
+
+        function handleUpdate() {
+            showToast('Update triggered — pulling latest image. Refresh your browser in a few seconds.', 'update');
+            fetch('/api/update', { method: 'POST' }).catch(() => {});
+        }
+
+        function handleRollback() {
+            showToast('Rollback triggered — reverting to previous image. Refresh your browser in a few seconds.', 'rollback');
+            fetch('/api/rollback', { method: 'POST' }).catch(() => {});
+        }
+    </script>
+
+</body>
+</html>

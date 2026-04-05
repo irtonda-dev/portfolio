@@ -83,7 +83,7 @@ nav a i {
     padding-top: 3.25rem;    /* matches nav height, rem so it scales */
     background-color: #272b2f;
     display: grid;
-    grid-template-columns: 2fr 1fr 2fr; /* 40% · 20% · 40% — fully proportional */
+    grid-template-columns: 2fr 1.3fr 2fr; /* 40% · 24% · 40% — portrait slightly wider */
     grid-template-rows: 1fr;
     align-items: start;
     overflow: hidden;
@@ -315,7 +315,7 @@ nav a i {
 .hero-portrait img {
     width: 100%;          /* fills the proportional column */
     height: auto;         /* aspect ratio preserved */
-    max-height: 92vh;     /* safety: never taller than the viewport */
+    max-height: 96vh;     /* safety: never taller than the viewport */
     object-fit: contain;
     object-position: bottom center;
     filter: drop-shadow(0 0.5rem 2rem rgba(0,0,0,0.6));
@@ -487,8 +487,18 @@ nav a i {
     background: #1a1b1c;
     border-radius: 0.75rem;
     border: 1px dashed rgba(200, 205, 211, 0.15);
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1 / 1;
     width: 100%;
+    overflow: hidden;
+}
+
+.about-img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0.75rem;
+    display: block;
 }
 
 /* ============================================================
@@ -1042,3 +1052,266 @@ nav a i {
     gap: 0.4rem;
 }
  
+
+/* ============================================================
+   DEVOPS PROJECT PAGE
+   Add these styles to the bottom of style.css
+   ============================================================ */
+
+/* --- Explainer block --- */
+.devops-explainer {
+    background: #0d0d0d;
+    border-radius: 1rem;
+    padding: clamp(1.5rem, 2vw, 2rem);
+    margin-bottom: clamp(2rem, 3vw, 3rem);
+    border: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.devops-explainer-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.25rem;
+}
+
+.devops-explainer-header i {
+    color: #e5383b;
+    font-size: 1rem;
+}
+
+.devops-explainer-header h2 {
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+    font-weight: 700;
+    color: #c8cdd3;
+    letter-spacing: 0.03em;
+}
+
+.devops-explainer p {
+    font-size: clamp(0.78rem, 0.95vw, 0.9rem);
+    font-weight: 300;
+    color: #b0b8c1;
+    line-height: 1.9;
+}
+
+/* --- Side-by-side comparison --- */
+.devops-compare {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2.5vw, 2.5rem);
+    margin-bottom: clamp(2rem, 3vw, 3rem);
+}
+
+.devops-version-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.devops-version-label {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.375rem;
+    align-self: flex-start;
+}
+
+.devops-version-label--old {
+    background: rgba(255,255,255,0.06);
+    color: #7a8390;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.devops-version-label--new {
+    background: rgba(229,56,59,0.1);
+    color: #e5383b;
+    border: 1px solid rgba(229,56,59,0.25);
+}
+
+/* Fake browser frame */
+.devops-browser-frame {
+    border-radius: 0.625rem;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.devops-browser-frame--new {
+    border-color: rgba(229,56,59,0.2);
+    box-shadow: 0 0.25rem 1.5rem rgba(229,56,59,0.08);
+}
+
+.devops-browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.75rem;
+    background: #1a1b1d;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.devops-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    flex-shrink: 0;
+}
+
+.devops-url-bar {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    border-radius: 0.25rem;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.55rem;
+    color: #7a8390;
+    letter-spacing: 0.02em;
+    margin-left: 0.25rem;
+}
+
+.devops-browser-content {
+    padding: 1rem;
+    min-height: 7rem;
+}
+
+.devops-browser-content--old {
+    background: #ffffff;
+    color: #000000;
+}
+
+.devops-browser-content--new {
+    background: #272b2f;
+}
+
+.devops-version-desc {
+    font-size: clamp(0.65rem, 0.8vw, 0.75rem);
+    font-weight: 400;
+    color: #7a8390;
+    text-align: center;
+}
+
+.devops-arrow-divider {
+    font-size: 1.5rem;
+    color: #e5383b;
+    flex-shrink: 0;
+    opacity: 0.6;
+}
+
+/* --- Controls --- */
+.devops-controls {
+    background: #0d0d0d;
+    border-radius: 1rem;
+    padding: clamp(1.5rem, 2vw, 2rem);
+    border: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.devops-controls-title {
+    font-size: clamp(0.85rem, 1.1vw, 1rem);
+    font-weight: 700;
+    color: #c8cdd3;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.devops-controls-sub {
+    font-size: clamp(0.75rem, 0.9vw, 0.85rem);
+    font-weight: 300;
+    color: #7a8390;
+    line-height: 1.7;
+}
+
+.devops-btn-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.devops-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 0.5rem;
+    padding: 0.65rem 1.4rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.devops-btn:active {
+    transform: scale(0.97);
+}
+
+.devops-btn--update {
+    background: #e5383b;
+    color: #ffffff;
+    border-color: #e5383b;
+}
+
+.devops-btn--update:hover {
+    background: #c42f32;
+    box-shadow: 0 0.25rem 1rem rgba(229,56,59,0.35);
+}
+
+.devops-btn--rollback {
+    background: transparent;
+    color: #c8cdd3;
+    border-color: rgba(255,255,255,0.15);
+}
+
+.devops-btn--rollback:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.3);
+}
+
+/* --- Toast notification --- */
+.devops-toast {
+    display: none;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1.1rem;
+    border-radius: 0.5rem;
+    font-size: clamp(0.75rem, 0.9vw, 0.85rem);
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.devops-toast--visible {
+    display: flex;
+}
+
+.devops-toast--update {
+    background: rgba(229,56,59,0.1);
+    border: 1px solid rgba(229,56,59,0.25);
+    color: #e5383b;
+}
+
+.devops-toast--rollback {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #c8cdd3;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .devops-compare {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .devops-arrow-divider {
+        transform: rotate(90deg);
+    }
+}

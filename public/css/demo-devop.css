@@ -1,0 +1,311 @@
+/* ============================================================
+   demo-devop.css — DevOps Live Demo Page Styles
+
+   HOW TO INTEGRATE INTO style.css:
+   ─────────────────────────────────────────────────────────
+   STEP 1: Delete the old DevOps block in style.css
+           Lines 1046–1307 (from the comment
+           "DEVOPS PROJECT PAGE" through the closing
+           @media block for .devops-compare)
+
+   STEP 2: Paste everything below starting at line 1046
+           (i.e. right after the closing brace on line 1045)
+
+   Alternatively, demo-devop.html already links this file
+   as a separate stylesheet — no changes to style.css needed
+   if you keep this as a standalone file.
+   ============================================================ */
+
+
+/* ============================================================
+   DEVOPS DEMO — WRAPPER TRANSITION
+   Smooth morph between plain (v1) and themed (v2) states.
+   ============================================================ */
+
+#devops-demo {
+    transition: background-color 0.5s ease, color 0.4s ease;
+}
+
+
+/* ============================================================
+   PLAIN STATE (v1) — default, no class on #devops-demo
+   Intentionally looks like unstyled HTML to sell the demo.
+   ============================================================ */
+
+#devops-demo {
+    background: #ffffff;
+    color: #111111;
+    font-family: Georgia, 'Times New Roman', serif;
+    min-height: 100vh;
+    padding-top: 3.25rem; /* clear fixed nav */
+}
+
+.devops-demo-inner {
+    max-width: 52rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+}
+
+/* Plain header — visible in v1, hidden in v2 */
+.devops-plain-header {
+    padding: 2rem 0 1.5rem;
+    border-bottom: 2px solid #111111;
+    margin-bottom: 2rem;
+    display: block;
+}
+
+.devops-plain-header h1 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 0.4rem;
+}
+
+.devops-plain-header p {
+    font-size: 0.95rem;
+    color: #333333;
+}
+
+/* Themed header — hidden in v1, shown in v2 */
+.devops-themed-header {
+    display: none;
+}
+
+/* Info block — plain state */
+.devops-info-block {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #cccccc;
+    transition: background 0.5s ease, border-color 0.5s ease,
+                border-radius 0.4s ease, padding 0.4s ease;
+}
+
+.devops-info-block h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 0.75rem;
+    transition: color 0.4s ease;
+}
+
+.devops-info-block p {
+    font-size: 0.9rem;
+    color: #222222;
+    line-height: 1.7;
+    margin-bottom: 0.6rem;
+    transition: color 0.4s ease;
+}
+
+.devops-info-stack {
+    color: #555555;
+    font-style: italic;
+    transition: color 0.4s ease, font-style 0.2s ease;
+}
+
+/* Controls — plain state */
+.devops-controls-block {
+    margin-bottom: 1.5rem;
+    transition: background 0.5s ease, border-radius 0.4s ease,
+                padding 0.4s ease, border 0.4s ease;
+}
+
+.devops-btn-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+}
+
+.devops-action-btn {
+    font-size: 0.875rem;
+    font-weight: bold;
+    padding: 0.45rem 1.2rem;
+    cursor: pointer;
+    border-radius: 0;
+    border: 2px solid #111111;
+    background: #ffffff;
+    color: #111111;
+    font-family: inherit;
+    transition: background 0.4s ease, color 0.4s ease,
+                border-color 0.4s ease, border-radius 0.4s ease,
+                box-shadow 0.4s ease, letter-spacing 0.3s ease,
+                text-transform 0.2s ease, padding 0.3s ease;
+}
+
+.devops-action-btn--update {
+    background: #111111;
+    color: #ffffff;
+}
+
+.devops-action-btn--update:hover {
+    background: #333333;
+}
+
+.devops-action-btn--rollback:hover {
+    background: #f0f0f0;
+}
+
+.devops-btn-hint {
+    font-size: 0.8rem;
+    color: #555555;
+    font-style: italic;
+    transition: color 0.4s ease;
+}
+
+/* Toast — shared, adapts via modifier classes */
+.devops-toast {
+    display: none;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1.1rem;
+    border-radius: 0.5rem;
+    font-size: clamp(0.75rem, 0.9vw, 0.85rem);
+    font-weight: 400;
+    line-height: 1.5;
+    margin-top: 1rem;
+}
+
+.devops-toast--visible {
+    display: flex;
+}
+
+.devops-toast--update {
+    background: rgba(229, 56, 59, 0.1);
+    border: 1px solid rgba(229, 56, 59, 0.25);
+    color: #e5383b;
+}
+
+.devops-toast--rollback {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid #cccccc;
+    color: #333333;
+}
+
+
+/* ============================================================
+   THEMED STATE (v2) — after clicking Update (.themed class
+   is added to #devops-demo via JavaScript)
+   ============================================================ */
+
+#devops-demo.themed {
+    background: #272b2f;
+    color: #c8cdd3;
+    font-family: 'JetBrains Mono', monospace;
+    padding-top: 0; /* page-hero inside handles nav clearance */
+}
+
+/* Hide plain header */
+#devops-demo.themed .devops-plain-header {
+    display: none;
+}
+
+/* Show themed page-hero header */
+#devops-demo.themed .devops-themed-header {
+    display: block;
+    background-color: #1a1b1d;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Restyle inner wrapper */
+#devops-demo.themed .devops-demo-inner {
+    max-width: min(56rem, 90vw);
+    margin: 0 auto;
+    padding: clamp(2.5rem, 4vw, 4rem) clamp(1rem, 3vw, 3rem) clamp(5rem, 8vw, 8rem);
+}
+
+/* Info block — themed state */
+#devops-demo.themed .devops-info-block {
+    background: #0d0d0d;
+    border-radius: 1rem;
+    padding: clamp(1.5rem, 2vw, 2rem);
+    margin-bottom: clamp(2rem, 3vw, 3rem);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#devops-demo.themed .devops-info-block h2 {
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+    font-weight: 700;
+    color: #c8cdd3;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.6rem;
+}
+
+#devops-demo.themed .devops-info-block p {
+    font-size: clamp(0.78rem, 0.95vw, 0.9rem);
+    font-weight: 300;
+    color: #b0b8c1;
+    line-height: 1.9;
+}
+
+#devops-demo.themed .devops-info-stack {
+    color: #e5383b;
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* Controls — themed state */
+#devops-demo.themed .devops-controls-block {
+    background: #0d0d0d;
+    border-radius: 1rem;
+    padding: clamp(1.5rem, 2vw, 2rem);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: clamp(2rem, 3vw, 3rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#devops-demo.themed .devops-action-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 0.5rem;
+    padding: 0.65rem 1.4rem;
+}
+
+#devops-demo.themed .devops-action-btn--update {
+    background: #e5383b;
+    color: #ffffff;
+    border-color: #e5383b;
+}
+
+#devops-demo.themed .devops-action-btn--update:hover {
+    background: #c42f32;
+    box-shadow: 0 0.25rem 1rem rgba(229, 56, 59, 0.35);
+}
+
+#devops-demo.themed .devops-action-btn--rollback {
+    background: transparent;
+    color: #c8cdd3;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+#devops-demo.themed .devops-action-btn--rollback:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+#devops-demo.themed .devops-btn-hint {
+    color: #7a8390;
+}
+
+#devops-demo.themed .devops-toast--rollback {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #c8cdd3;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 900px) {
+    .devops-btn-row {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}

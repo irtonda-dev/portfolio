@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact — Irton De Ascencao</title>
+    <link rel="icon" href="../assets/icons/dev1.png" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/contact_me.css" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+    <!-- ===================== NAVIGATION ===================== -->
+    <nav>
+        <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+        <a href="projects.html"><i class="fas fa-folder-open"></i> Projects</a>
+        <a href="contact_me.html" class="nav-active"><i class="fas fa-envelope"></i> Contact Me</a>
+    </nav>
+
+    <!-- ===================== PAGE HEADER ==================== -->
+    <header class="page-hero">
+        <div class="page-hero-inner">
+            <p class="page-hero-label">Let's connect</p>
+            <h1 class="page-hero-title">Get In Touch</h1>
+            <p class="page-hero-sub">Whether it's work, a project, or just saying hi — I'm always open to a conversation.</p>
+        </div>
+    </header>
+
+    <!-- ===================== CONTACT CONTENT ================ -->
+    <main class="contact-page">
+
+        <!-- Left: Email CTA -->
+        <section class="contact-card contact-card--email">
+
+            <div class="contact-card-icon">
+                <i class="fas fa-envelope-open-text"></i>
+            </div>
+
+            <h2 class="contact-card-title">Send me an email</h2>
+            <p class="contact-card-sub">
+                Fastest way to reach me. Opens your mail client with my address ready to go.
+            </p>
+
+            <a
+                href="mailto:irtonda@gmail.com?subject=I%20visited%20your%20site!%20-%20Hated%20IT!"
+                class="contact-email-btn"
+                onclick="handleEmailClick()"
+            >
+                <i class="fas fa-paper-plane"></i> Open Email
+            </a>
+
+            <p class="contact-email-address">irtonda@gmail.com</p>
+
+        </section>
+
+        <!-- Right: Visitor form -->
+        <section class="contact-card contact-card--form">
+
+            <h2 class="contact-card-title">Let me know you stopped by</h2>
+            <p class="contact-card-sub">
+                Drop your details — I'll be building a self-hosted API to store these soon.
+            </p>
+
+            <form class="contact-form" id="contact-form" novalidate onsubmit="handleSubmit(event)">
+
+                <div class="contact-form-row">
+
+                    <div class="contact-field" id="field-name">
+                        <label class="contact-label" for="input-name">Name <span class="contact-required">*</span></label>
+                        <input
+                            class="contact-input"
+                            id="input-name"
+                            type="text"
+                            placeholder="Irton"
+                            autocomplete="given-name"
+                        />
+                        <span class="contact-error" id="error-name"></span>
+                    </div>
+
+                    <div class="contact-field" id="field-surname">
+                        <label class="contact-label" for="input-surname">Surname <span class="contact-required">*</span></label>
+                        <input
+                            class="contact-input"
+                            id="input-surname"
+                            type="text"
+                            placeholder="De Ascencao"
+                            autocomplete="family-name"
+                        />
+                        <span class="contact-error" id="error-surname"></span>
+                    </div>
+
+                </div>
+
+                <div class="contact-field" id="field-linkedin">
+                    <label class="contact-label" for="input-linkedin">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                        <span class="contact-optional">(optional)</span>
+                    </label>
+                    <input
+                        class="contact-input"
+                        id="input-linkedin"
+                        type="url"
+                        placeholder="https://linkedin.com/in/yourname"
+                        autocomplete="url"
+                    />
+                    <span class="contact-error" id="error-linkedin"></span>
+                </div>
+
+                <button type="submit" class="contact-submit-btn" id="submit-btn">
+                    <span id="submit-label"><i class="fas fa-check"></i> Submit</span>
+                </button>
+
+            </form>
+
+            <!-- Success state -->
+            <div class="contact-success" id="contact-success">
+                <i class="fas fa-circle-check"></i>
+                <p>Thanks for stopping by — noted!</p>
+                <p class="contact-success-sub">Data storage coming soon via self-hosted API.</p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script>
+        // ── Email button feedback ──────────────────────────────────
+        function handleEmailClick() {
+            // mailto: handles the copy — nothing extra needed
+        }
+
+        // ── Form validation & submit ──────────────────────────────
+        function handleSubmit(e) {
+            e.preventDefault();
+            if (!validate()) return;
+
+            const btn   = document.getElementById('submit-btn');
+            const label = document.getElementById('submit-label');
+
+            // Loading state
+            btn.disabled = true;
+            label.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+
+            // Simulate async (placeholder until real API is built)
+            setTimeout(() => {
+                document.getElementById('contact-form').style.display    = 'none';
+                document.getElementById('contact-success').style.display = 'flex';
+            }, 1000);
+        }
+
+        function validate() {
+            let valid = true;
+
+            const name     = document.getElementById('input-name');
+            const surname  = document.getElementById('input-surname');
+            const linkedin = document.getElementById('input-linkedin');
+
+            clearErrors();
+
+            // Name — required, letters only
+            if (!name.value.trim()) {
+                setError('field-name', 'error-name', 'Name is required.');
+                valid = false;
+            } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]{1,50}$/.test(name.value.trim())) {
+                setError('field-name', 'error-name', 'Please enter a valid name.');
+                valid = false;
+            }
+
+            // Surname — required, letters only
+            if (!surname.value.trim()) {
+                setError('field-surname', 'error-surname', 'Surname is required.');
+                valid = false;
+            } else if (!/^[A-Za-zÀ-ÖØ-öø-ÿ\s'-]{1,50}$/.test(surname.value.trim())) {
+                setError('field-surname', 'error-surname', 'Please enter a valid surname.');
+                valid = false;
+            }
+
+            // LinkedIn — optional, but must be a linkedin.com URL if provided
+            if (linkedin.value.trim()) {
+                const url = linkedin.value.trim();
+                if (!/^https?:\/\/(www\.)?linkedin\.com\/in\/.+/.test(url)) {
+                    setError('field-linkedin', 'error-linkedin', 'Must be a valid linkedin.com/in/… URL.');
+                    valid = false;
+                }
+            }
+
+            return valid;
+        }
+
+        function setError(fieldId, errorId, message) {
+            document.getElementById(fieldId).classList.add('contact-field--error');
+            document.getElementById(errorId).textContent = message;
+        }
+
+        function clearErrors() {
+            document.querySelectorAll('.contact-field').forEach(f => f.classList.remove('contact-field--error'));
+            document.querySelectorAll('.contact-error').forEach(e => e.textContent = '');
+        }
+
+        // Clear error on input
+        document.querySelectorAll('.contact-input').forEach(input => {
+            input.addEventListener('input', () => {
+                const field = input.closest('.contact-field');
+                const error = field.querySelector('.contact-error');
+                field.classList.remove('contact-field--error');
+                if (error) error.textContent = '';
+            });
+        });
+    </script>
+
+</body>
+</html>

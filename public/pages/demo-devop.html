@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevOps — Irton De Ascencao</title>
+    <link rel="icon" href="../assets/icons/dev1.png" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/demo-devop.css" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+    <!-- Nav stays portfolio-styled always -->
+    <nav>
+        <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+        <a href="projects.html"><i class="fas fa-folder-open"></i> Projects</a>
+        <a href="contact_me.html"><i class="fas fa-envelope"></i> Contact Me</a>
+    </nav>
+
+    <!-- Demo wrapper: no class = plain (v1), class="themed" = portfolio (v2) -->
+    <div id="devops-demo">
+
+        <div class="devops-demo-inner">
+
+            <!-- Plain state header — visible by default, hidden when .themed -->
+            <div class="devops-plain-header">
+                <h1>DevOps Project</h1>
+                <p>A live demo — this page updates itself.</p>
+            </div>
+
+            <!-- Themed state header — hidden by default, shown when .themed -->
+            <header class="devops-themed-header page-hero">
+                <div class="page-hero-inner">
+                    <a href="projects.html" class="page-back"><i class="fas fa-arrow-left"></i> Projects</a>
+                    <p class="page-hero-label">DevOps · Live Demo</p>
+                    <h1 class="page-hero-title">DevOps</h1>
+                    <p class="page-hero-sub">Two Docker images. One update button. This site live-updates itself.</p>
+                    <div class="page-hero-chips">
+                        <span class="project-chip"><i class="fab fa-docker"></i> Docker</span>
+                        <span class="project-chip"><i class="fas fa-code-branch"></i> CI/CD</span>
+                        <span class="project-chip"><i class="fab fa-node-js"></i> Node.js</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content area -->
+            <main class="devops-content">
+
+                <!-- Project description block -->
+                <div class="devops-info-block">
+                    <h2>What's happening here</h2>
+                    <p>
+                        This project runs as <strong>two Docker images</strong>. The old version is plain HTML — no styling.
+                        The current version is the dark themed portfolio you see after updating.
+                    </p>
+                    <p>
+                        Hitting <strong>Update</strong> pulls the latest Docker image from the registry
+                        and restarts the container. Hitting <strong>Rollback</strong> swaps back
+                        to the previous image instantly.
+                    </p>
+                    <p class="devops-info-stack">
+                        Stack: <strong>Docker</strong> &nbsp;·&nbsp; <strong>Node.js</strong> &nbsp;·&nbsp; <strong>CI/CD via GitHub Actions</strong>
+                    </p>
+                </div>
+
+                <!-- Controls -->
+                <div class="devops-controls-block">
+                    <div class="devops-btn-row">
+                        <button class="devops-action-btn devops-action-btn--update" id="btn-update">
+                            <i class="fas fa-arrow-up-from-bracket"></i> Update
+                        </button>
+                        <button class="devops-action-btn devops-action-btn--rollback" id="btn-rollback">
+                            <i class="fas fa-rotate-left"></i> Rollback
+                        </button>
+                    </div>
+                    <p class="devops-btn-hint" id="devops-hint">
+                        Click <strong>Update</strong> to apply the new theme.
+                    </p>
+                </div>
+
+                <!-- Toast notification -->
+                <div class="devops-toast" id="devops-toast">
+                    <i class="fas fa-triangle-exclamation"></i>
+                    <span id="devops-toast-msg"></span>
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+
+    <script>
+        const demo = document.getElementById('devops-demo');
+        const hint = document.getElementById('devops-hint');
+
+        function showToast(message, type) {
+            const toast = document.getElementById('devops-toast');
+            const msg   = document.getElementById('devops-toast-msg');
+            msg.textContent = message;
+            toast.className = 'devops-toast devops-toast--visible devops-toast--' + type;
+            setTimeout(() => { toast.className = 'devops-toast'; }, 6000);
+        }
+
+        function handleUpdate() {
+            demo.classList.add('themed');
+            hint.innerHTML = 'Theme applied. Click <strong>Rollback</strong> to revert.';
+            showToast('Theme updated — container update also triggered.', 'update');
+            fetch('/api/update', { method: 'POST' }).catch(() => {});
+        }
+
+        function handleRollback() {
+            demo.classList.remove('themed');
+            hint.innerHTML = 'Click <strong>Update</strong> to apply the new theme.';
+            showToast('Rollback triggered — reverted to plain state.', 'rollback');
+            fetch('/api/rollback', { method: 'POST' }).catch(() => {});
+        }
+    </script>
+
+</body>
+</html>
