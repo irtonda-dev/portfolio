@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HomeNAS — Irton De Ascencao</title>
+    <link rel="icon" href="../assets/icons/dev1.png" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+    <!-- ===================== NAVIGATION ===================== -->
+    <nav>
+        <a href="../index.html"><i class="fas fa-house"></i> Home</a>
+        <a href="journey.html"><i class="fas fa-map"></i> My Journey</a>
+        <a href="projects.html"><i class="fas fa-folder-open"></i> Projects</a>
+        <a href="contact_me.html"><i class="fas fa-envelope"></i> Contact Me</a>
+    </nav>
+
+    <!-- ===================== PAGE HEADER ==================== -->
+    <header class="page-hero">
+        <div class="page-hero-inner">
+            <a href="projects.html" class="page-back"><i class="fas fa-arrow-left"></i> Projects</a>
+            <p class="page-hero-label">Homelab · 5 Years</p>
+            <h1 class="page-hero-title">HomeNAS</h1>
+            <p class="page-hero-sub">From a laptop running Docker to 18TB of self-hosted infrastructure.</p>
+            <div class="page-hero-chips">
+                <span class="project-chip"><i class="fab fa-docker"></i> Docker</span>
+                <span class="project-chip"><i class="fas fa-server"></i> UnraidOS</span>
+                <span class="project-chip"><i class="fas fa-database"></i> RAID / ZFS</span>
+                <span class="project-chip"><i class="fab fa-linux"></i> Linux</span>
+                <span class="project-chip"><i class="fas fa-network-wired"></i> Networking</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================== PROJECT CONTENT ================ -->
+    <main class="project-detail">
+
+        <!-- Version timeline -->
+        <div class="version-timeline">
+
+            <!-- V1 -->
+            <div class="version-block">
+                <div class="version-marker">
+                    <span class="version-dot"></span>
+                    <span class="version-label">V1</span>
+                </div>
+                <div class="version-card">
+                    <h2 class="version-title">HomeNAS <span class="highlight">V1</span></h2>
+                    <p class="version-subtitle">The Beginning — Laptop &amp; Docker</p>
+                    <div class="version-body">
+                        <p>
+                            I built a Home NAS server to play around with Docker. Version 1 included
+                            running Docker locally on my laptop. I had a couple of Docker images but it
+                            wasn't perfect. I also ran out of storage — fast.
+                        </p>
+                    </div>
+                    <div class="version-chips">
+                        <span class="project-chip"><i class="fab fa-docker"></i> Docker</span>
+                        <span class="project-chip"><i class="fas fa-laptop"></i> Local Machine</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- V2 -->
+            <div class="version-block">
+                <div class="version-marker">
+                    <span class="version-dot"></span>
+                    <span class="version-label">V2</span>
+                </div>
+                <div class="version-card">
+                    <h2 class="version-title">HomeNAS <span class="highlight">V2</span></h2>
+                    <p class="version-subtitle">Salvaged PCs &amp; Ubuntu — 16GB DDR2, 8TB RAID 1</p>
+                    <div class="version-body">
+                        <p>
+                            I managed to get hold of 3 old PCs running Windows XP. The PCs were old but
+                            working. I took out the one with the best motherboard and CPU — all 3 PCs had
+                            4GB DDR2. I was able to build a server with <span class="highlight">16GB DDR2</span>,
+                            a boot drive, and <span class="highlight">2× 4TB in a software RAID 1</span>.
+                        </p>
+                        <p>
+                            The OS of choice was Ubuntu (GUI). With Docker installed on top of it, I played
+                            around with more containers — Portainer, Cockpit, and others. Some images kept
+                            corrupting because in South Africa we suffer from load shedding.
+                        </p>
+                        <div class="version-aside">
+                            <i class="fas fa-bolt"></i>
+                            <span>Not sure what load shedding is?
+                                <a href="https://www.youtube.com/watch?v=EfKC8aOczgY" target="_blank" rel="noopener" class="inline-link">
+                                    Watch this <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="version-chips">
+                        <span class="project-chip"><i class="fab fa-ubuntu"></i> Ubuntu GUI</span>
+                        <span class="project-chip"><i class="fab fa-docker"></i> Docker</span>
+                        <span class="project-chip"><i class="fas fa-database"></i> RAID 1 · 8TB</span>
+                        <span class="project-chip">Portainer</span>
+                        <span class="project-chip">Cockpit</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- V3 -->
+            <div class="version-block">
+                <div class="version-marker">
+                    <span class="version-dot"></span>
+                    <span class="version-label">V3</span>
+                </div>
+                <div class="version-card">
+                    <h2 class="version-title">HomeNAS <span class="highlight">V3</span></h2>
+                    <p class="version-subtitle">CentOS CLI — 12TB RAID 1, First Disk Failure</p>
+                    <div class="version-body">
+                        <p>
+                            After about a year I ran into a familiar problem — out of storage again, and
+                            no more SATA slots. I managed to get my hands on <span class="highlight">3× 6TB</span> drives.
+                        </p>
+                        <p>
+                            I chose to redo the server one more time, opting for <span class="highlight">CentOS CLI only</span>
+                            to conserve resources. I rebuilt with <span class="highlight">2× 6TB in RAID 1</span>.
+                            These were second-hand drives — and I experienced
+                            <span class="highlight">1 disk failure</span> along the way with
+                            <span class="highlight">zero data loss</span>.
+                        </p>
+                    </div>
+                    <div class="version-chips">
+                        <span class="project-chip"><i class="fab fa-linux"></i> CentOS CLI</span>
+                        <span class="project-chip"><i class="fas fa-database"></i> RAID 1 · 12TB</span>
+                        <span class="project-chip"><i class="fas fa-shield-alt"></i> 0 Data Loss</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- V4 -->
+            <div class="version-block">
+                <div class="version-marker">
+                    <span class="version-dot version-dot--current"></span>
+                    <span class="version-label version-label--current">V4</span>
+                </div>
+                <div class="version-card version-card--current">
+                    <div class="version-card-badge">Current</div>
+                    <h2 class="version-title">HomeNAS <span class="highlight">V4</span></h2>
+                    <p class="version-subtitle">UnraidOS — i3 10th Gen, ZFS, 18TB &amp; Growing</p>
+                    <div class="version-body">
+                        <p>
+                            After 6–8 months of smooth sailing I ran out of storage yet again. I decided
+                            to go more robust. I bought an <span class="highlight">i3-10th Gen motherboard</span>,
+                            8GB DDR4 RAM, a new PSU, case, and SATA expander.
+                        </p>
+                        <p>
+                            I installed <span class="highlight">UnraidOS</span> — an OS that boots from USB
+                            and is headless, managed via a browser GUI. I had
+                            <span class="highlight">3 data drives with ZFS</span> and
+                            <span class="highlight">1 parity drive</span> — 12TB of data protected, plus
+                            an SSD for persistent Docker container config files.
+                        </p>
+                        <p>
+                            This new iteration gave me much deeper exposure to Docker, file permissions,
+                            fileshare, DNS, NGINX, and PostgreSQL. I deployed a VM on the machine, played
+                            around with networking, and eventually
+                            <span class="highlight">expanded to 18TB</span>.
+                        </p>
+                        <p class="version-closing">
+                            This has been my <span class="highlight">5-year HomeNAS journey</span> — and it's not done yet.
+                        </p>
+                    </div>
+                    <div class="version-chips">
+                        <span class="project-chip"><i class="fas fa-server"></i> UnraidOS</span>
+                        <span class="project-chip"><i class="fas fa-database"></i> ZFS · 18TB</span>
+                        <span class="project-chip"><i class="fab fa-docker"></i> Docker</span>
+                        <span class="project-chip"><i class="fas fa-network-wired"></i> NGINX</span>
+                        <span class="project-chip"><i class="fas fa-network-wired"></i> DNS</span>
+                        <span class="project-chip">PostgreSQL</span>
+                        <span class="project-chip"><i class="fas fa-desktop"></i> VM</span>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- end .version-timeline -->
+
+    </main>
+
+</body>
+</html>
