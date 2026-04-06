@@ -143,11 +143,27 @@
             btn.disabled = true;
             label.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
 
-            // Simulate async (placeholder until real API is built)
-            setTimeout(() => {
+            const name     = document.getElementById('input-name').value.trim();
+            const surname  = document.getElementById('input-surname').value.trim();
+            const linkedin = document.getElementById('input-linkedin').value.trim() || null;
+
+            fetch('/api/visitors', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, surname, linkedin })
+            })
+            .then(res => {
+                if (!res.ok) throw new Error('API error');
                 document.getElementById('contact-form').style.display    = 'none';
                 document.getElementById('contact-success').style.display = 'flex';
-            }, 1000);
+            })
+            .catch(() => {
+                btn.disabled = false;
+                label.innerHTML = '<i class="fas fa-check"></i> Submit';
+                document.getElementById('contact-success').innerHTML =
+                    '<i class="fas fa-circle-xmark" style="color:#e5383b"></i><p>Something went wrong — try again.</p>';
+                document.getElementById('contact-success').style.display = 'flex';
+            });
         }
 
         function validate() {
