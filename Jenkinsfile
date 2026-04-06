@@ -37,10 +37,11 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo 'Deploy stage — wired up once docker-compose is on the server.'
-                // SSH into server and run:
-                // docker-compose pull
-                // docker-compose up -d
+                echo 'Pulling latest images on host...'
+                sh 'docker compose -f /mnt/user/appdata/ida-portfolio-stack/docker-compose.yml pull'
+
+                echo 'Restarting stack with new image...'
+                sh 'docker compose -f /mnt/user/appdata/ida-portfolio-stack/docker-compose.yml up -d'
             }
         }
 
